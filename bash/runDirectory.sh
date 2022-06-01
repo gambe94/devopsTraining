@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Runing directory always depends on which directory we run the script
-
+#set -x
 echo "pwd: `pwd`"
 echo "\$0: $0"
 echo "basename: `basename -- "$0"`"
