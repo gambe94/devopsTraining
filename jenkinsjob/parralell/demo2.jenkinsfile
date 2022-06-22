@@ -16,7 +16,7 @@ pipeline {
                     def tests = [:]
 
                     for (i = 0; i < 2; i++) {
-                        tests["${i}"] = {
+                        tests["sratch ${i}"] = {
                             stage("Scratch Creation") {
                                 echo "Sratch created ${i}"
                             }
