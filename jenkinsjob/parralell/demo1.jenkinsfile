@@ -1,0 +1,49 @@
+pipeline {
+    agent none
+    options {
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+    }
+
+    stages {
+        stage('First Stage') {
+            steps {
+                echo 'First stage'
+            }
+        }
+        stage('Create Sratch and test') {
+            parallel {
+                stage('Sratch 1') {
+                    environment {
+                        SCRATCH_ORG_ALIAS = 'test-1'
+                    }
+                    stages {
+                        stage('Create Sratch 1') {
+                            steps {
+                                echo 'create scratch 1'
+                            }
+                        }
+                        stage('Test Sratch 1') {
+                            steps {
+                                echo 'Test scratch 1'
+                            }
+                        }
+                    }
+                }
+                stage('Sratch 2') {
+                    stages {
+                        stage('Create Sratch 2') {
+                            steps {
+                                echo 'create scratch 2'
+                            }
+                        }
+                        stage('Test Sratch 2') {
+                            steps {
+                                echo 'Test scratch 2'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
